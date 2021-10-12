@@ -8,8 +8,8 @@ async function Precarga_Temps(){
         let sarta = "";
         temps.forEach(t => { sarta = sarta + t.temperament;})
         temps = sarta.split(",");
-        temps = temps.filter((t, i) => { return temps.indexOf(t) === i;}).sort();
-        await Promise.all(temps.map( t => Temperament.create({ name : t})))
+        temps = temps.filter((t, i) => { return temps.indexOf(t) === i;}).sort(); 
+        await Promise.all(temps.map( t => Temperament.findOrCreate({where:{name : t.trim()}})))
         return "Temperamentos Cargados Exitosamente... - Successfully charged temperaments..."
     }
     catch (error) {
@@ -18,7 +18,17 @@ async function Precarga_Temps(){
     }
 }
 
+//Obtener todos los Temperamentos BD despues de haber sido precargados desde la Api
+ async function Get_Temps(req, res, next) {
+    try {
+      const temps = await Temperament.findAll({attributes: ['id', 'name']});
+      res.json(temps || 'Temperamentos no encontrados...- Temperaments not found...');
+    }
+    catch (error) {next(error)}
+}
+
 module.exports = {
-   Precarga_Temps
+   Precarga_Temps,
+   Get_Temps
 }
 
