@@ -25,10 +25,10 @@ async function Precarga_Temps(){
       res.json(temps || 'Temperamentos no encontrados...- Temperaments not found...');
     }
     catch (error) {next(error)}
-}
+ }
 
-module.exports = {
+ module.exports = {
    Precarga_Temps,
    Get_Temps
-}
+ }
 

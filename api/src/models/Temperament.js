@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define('temperament', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false
-      //unique : true
+      allowNull: false,
+      unique : true
       }
   });
 };

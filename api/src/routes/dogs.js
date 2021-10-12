@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-// const { addDog, getDogs, getDogById } = require('../funciones/fn_dogs.js')
+ const { Add_Dog, Get_Dogs, Get_Dog_ById } = require('../funciones/fn_dogs.js')
 
-// router.post("/add", addDog)
+router.post("/add", Add_Dog)
 // router.get("/", getDogs)
 // router.get("/:id", getDogById)
 
