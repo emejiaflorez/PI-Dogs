@@ -1,7 +1,7 @@
 const { Temperament } = require("../db");
 const axios = require('axios');
 
-//Precarga de Temperamentos
+//Precarga de Temperamentos-----------------------------------------------------------------------------
 async function Precarga_Temps(){ 
     try {
         let temps = (await axios.get("https://api.thedogapi.com/v1/breeds")).data;
@@ -18,7 +18,7 @@ async function Precarga_Temps(){
     }
 }
 
-//Obtener todos los Temperamentos BD despues de haber sido precargados desde la Api
+//Obtener todos los Temperamentos BD despues de haber sido precargados desde la Api---------------------------
  async function Get_Temps(req, res, next) {
     try {
       const temps = await Temperament.findAll({attributes: ['id', 'name']});
